@@ -1,0 +1,31 @@
+// backend/src/services/openai.js
+const { Configuration, OpenAIApi } = require('openai');
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const openai = new OpenAIApi(configuration);
+
+async function generateScript(niche, style, platform) {
+  const prompt = `Créer un script viral pour ${platform} dans la niche ${niche} 
+                  avec un style ${style}. Format: hook, corps, call-to-action`;
+  
+  const completion = await openai.createChatCompletion({
+    model: "gpt-4",
+    messages: [
+      {
+        role: "system",
+        content: "Tu es un expert en création de contenu viral pour les réseaux sociaux."
+      },
+      {
+        role: "user",
+        content: prompt
+      }
+    ]
+  });
+
+  return completion.data.choices[0].message.content;
+}
+
+module.exports = { generateScript };
