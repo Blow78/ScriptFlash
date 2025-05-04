@@ -1,0 +1,8 @@
+git clone https://github.com/votre-username/scriptflash.git
+cd scriptflash
+# Créer la structure de base
+mkdir -p backend/src/{controllers,models,routes,services}
+mkdir -p frontend/src/{components,pages,services,styles}
+# Initialiser les packages
+cd backend && npm init -y
+cd ../frontend && npm init -y
