@@ -1,0 +1,24 @@
+// backend/src/app.js
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Routes de base
+app.post('/api/generate-script', async (req, res) => {
+  try {
+    // Logique de génération de script ici
+    res.json({ success: true, data: result });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
+});
